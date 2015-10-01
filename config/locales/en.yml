@@ -1,0 +1,46 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  add_lesson: 'Add lesson'
+  next_week: 'Next week'
+  previous_week: 'Previous week'
+  group: 'group'
+  hometask_or_comments: 'Hometask or comments'
+  lesson_date: 'Date lesson'
+  create: 'Create'
+  cancel: 'Cancel'
+  save: 'Save'
+  mark_for_lesson: 'Mark for lesson'
+  mark_for_homework: 'Mark for homework'
+  date: 'Date: '
+  time: 'Time: '
+  write_hometask_or_comment: 'Write hometask or comment, please.'
+  error_create: 'Error! Object is not saved!'
+  error_update: 'Error! Object is not updated!'
+  error_show: 'Error! Object is not found'
+  middle_group: 'Middle group'
+  senior_group: 'Senior group'
+  electronic_diary: 'ElectronicDiary'
+  time:
+    formats:
+      short_time: "Time: %H:%M"
+      short_date: "Date: %d.%m.%Y"

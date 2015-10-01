@@ -1,0 +1,12 @@
+table.table.table-bordered.show_l
+  = bootstrap_form_for @lesson do |f|
+    tr
+      td = f.datetime_field(:date, label: t(:lesson_date), placeholder:  'dd.mm.yy HH:mm')
+    tr
+      td = f.select(:group_id, Lesson::LESSON_GROUP , { class: "selectpicker" })
+    tr
+      td = f.text_field(:hometask, label: t(:hometask_or_comments), placeholder: t(:write_hometask_or_comment))
+    tr
+      td = f.submit t(:create), class: 'btn btn-primary'
+  tr
+    td = link_to t(:cancel), :back, class: 'btn btn-default'
