@@ -29,15 +29,15 @@ class LessonsController < ApplicationController
     flash[:error] = t(:error_update) unless @lesson.update_attributes(lesson_params)
     Lesson.transaction do
       lessons_marks_params[:users].each do |lesson_mark_params|
-        lesson_user = @lesson.lesson_marks.where(lesson_mark_params[:user_id]).first
+        lesson_user = @lesson.lesson_marks.find_by_user_id(lesson_mark_params[:user_id])
         if lesson_user.present?
           lesson_user.update_attributes(lesson_mark_params)
         else
           @lesson.lesson_marks.create(lesson_mark_params)
         end
       end
-    end
-    return redirect_to lessons_path
+      end
+    return redirect_to :back
   end
 
   private
