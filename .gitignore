@@ -33,3 +33,10 @@ bower.json
 
 # Ignore pow environment settings
 .powenv
+.idea/*
+
+# Ignore rubymine config
+.idea/*
+.idea/workspace.xml
+config/database.yml
+public/system/*
