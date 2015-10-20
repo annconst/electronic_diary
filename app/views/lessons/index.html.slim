@@ -9,14 +9,20 @@ table.table.table-bordered.main_color
       td
         b=day.strftime("%A")
         br
-        b=day.strftime("%d.%m.%Y")
+        b= I18n.l(day, format: :short_date)
         br
         - if @lessons_by_day.include? day
           -@lessons_by_day[day].each do |lesson|
-            br
-            =lesson.date.strftime("%d.%m.%Y %H:%M")
-            br
-            =link_to "#{lesson.group_id}#{t(:group)}", lesson_path(lesson.id), remote: true
+            - if @user.admin?
+              br
+              =I18n.l(lesson.date, format: :short_time)
+              br
+              = link_to "#{lesson.group_id}#{t(:group)}", lesson_path(lesson.id), remote: true
+            - if @user.group_id == lesson.group_id
+              br
+              =I18n.l(lesson.date, format: :short_time)
+              br
+              = link_to "#{lesson.group_id}#{t(:group)}", lesson_path(lesson.id), remote: true
     td = link_to t(:next_week), week_of_lessons_path(@week + 1), class: "glyphicon glyphicon-arrow-right"
 hr.hr-row
 .row
@@ -24,3 +30,7 @@ hr.hr-row
     = link_to t(:add_lesson), new_lesson_path, class: 'btn btn btn-primary'
 hr.hr-row
 .show_lesson
+.row
+  .col-md-12.center
+    - if user_signed_in?
+      = link_to t(:exit), destroy_user_session_path, method: :delete, class: 'btn btn-danger'

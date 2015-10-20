@@ -40,7 +40,18 @@ en:
   middle_group: 'Middle group'
   senior_group: 'Senior group'
   electronic_diary: 'ElectronicDiary'
+  login: 'Login'
+  email: 'Email'
+  password: 'Password'
+  log_in: 'Log in'
+  sign_up: 'Sign up'
+  exit: 'Exit'
+  remember_me: 'Remember me'
   time:
+    formats:
+      short_time: "Time: %H:%M"
+      short_date: "Date: %d.%m.%Y"
+  date:
     formats:
       short_time: "Time: %H:%M"
       short_date: "Date: %d.%m.%Y"

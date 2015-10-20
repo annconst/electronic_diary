@@ -1,6 +1,7 @@
 class LessonsController < ApplicationController
 
   def index
+    @user = current_user
     @week = week_params[:week].to_i || 0
     start_day = (Time.now + @week.weeks).at_beginning_of_week
     @week_days = (0..4).map { |day_num| (start_day + day_num.days).to_date }
@@ -9,6 +10,7 @@ class LessonsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @lesson = Lesson.where(id: params[:id]).first
     return redirect_to(lessons_path, flash[:error] = t(:error_show)) unless @lesson
     @users = User.where(group_id: @lesson.group_id).includes(:lesson_marks)
