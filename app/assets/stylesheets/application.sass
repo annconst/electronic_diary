@@ -16,13 +16,55 @@
  *= require rails_bootstrap_forms
  */
 @import "bootstrap-sprockets"
-@import "bootstrap" 
+@import "bootstrap"
+
+@media (min-width: 990px)
+  .add_line
+    display: none
+html
+  min-height: 100%
+  width: 100%
+  overflow-x: hidden
+  position: relative
+
+body
+  font-family: 'Istok Web', sans-serif
+  margin-bottom: 50px
+  width: 100%
 
 .show_l
-  width: 680px
   margin-left: auto
   margin-right: auto
-  background-color: lightcyan
+  background-color: floralwhite
+  border: 2px double lightskyblue
+  border-radius: 7px
+  max-width: 700px
+
+.login
+  margin-left: auto
+  margin-right: auto
+  border: 2px double lightskyblue
+  border-radius: 7px
+  max-width: 370px
+  padding: 10px
+  background-color: floralwhite
+
+select
+  height: 34px
+  background-color: white
+  border-radius: 4px
+
+.panel-default > .panel-heading
+  background-color: floralwhite
+
+.panel-default
+  border-color: lightskyblue
+
+.styled_select
+  width: 450px
+  height: 94px
+  overflow: hidden
+  border: 1px solid #ccc
 
 .center
   text-align: center
@@ -38,9 +80,6 @@
 
 .tlook2
   background-color: lightskyblue
-  width: 370px
-  padding: 10px
-  
-.exit_button
-  margin-left: 40px
-  margin-top: 40px
+
+.show_padding
+  padding: 15px
