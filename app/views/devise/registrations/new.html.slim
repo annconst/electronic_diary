@@ -14,7 +14,8 @@ div.navbar-collapse.collapse.navbar-center
             = f.email_field :email, class: 'form-control'
           .field.form-group
             = f.label :group_id, t(:group_id)
-            = f.text_field :group_id, class: 'form-control'
+            br
+            = f.select(:group_id, Lesson::LESSON_GROUP , { class: "selectpicker" })
           .field.form-group
             = f.label :password, t(:password)
             = f.password_field :password, autocomplete: "off", class: 'form-control'

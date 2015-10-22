@@ -21,8 +21,8 @@
 
 en:
   add_lesson: 'Add lesson'
-  next_week: 'Next week'
-  previous_week: 'Previous week'
+  next_week: 'N' #Next week
+  previous_week: 'P' #Previous week
   group: 'group'
   hometask_or_comments: 'Hometask or comments'
   lesson_date: 'Date lesson'
@@ -47,6 +47,7 @@ en:
   sign_up: 'Sign up'
   exit: 'Exit'
   remember_me: 'Remember me'
+  admin: 'Admin'
   time:
     formats:
       short_time: "Time: %H:%M"
@@ -55,3 +56,4 @@ en:
     formats:
       short_time: "Time: %H:%M"
       short_date: "Date: %d.%m.%Y"
+      short_date_name: "%A"

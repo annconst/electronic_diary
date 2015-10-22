@@ -2,28 +2,29 @@
   - if flash[:error]
     = flash[:error]
 hr.hr-row
-table.table.table-bordered.main_color
-  tr.center
-    td = link_to t(:previous_week), week_of_lessons_path(@week - 1), class: "glyphicon glyphicon-arrow-left"
-    - @week_days.each do |day|
-      td
-        b=day.strftime("%A")
-        br
-        b= I18n.l(day, format: :short_date)
-        br
-        - if @lessons_by_day.include? day
-          -@lessons_by_day[day].each do |lesson|
-            - if @user.admin?
-              br
-              =I18n.l(lesson.date, format: :short_time)
-              br
-              = link_to "#{lesson.group_id}#{t(:group)}", lesson_path(lesson.id), remote: true
-            - if @user.group_id == lesson.group_id
-              br
-              =I18n.l(lesson.date, format: :short_time)
-              br
-              = link_to "#{lesson.group_id}#{t(:group)}", lesson_path(lesson.id), remote: true
-    td = link_to t(:next_week), week_of_lessons_path(@week + 1), class: "glyphicon glyphicon-arrow-right"
+.table-responsive
+  table.table.table-bordered.main_color
+    tr
+      td = link_to t(:previous_week), week_of_lessons_path(@week - 1), class: "glyphicon glyphicon-arrow-left"
+      - @week_days.each do |day|
+        td.center
+          b=I18n.l(day, format: :short_date_name)
+          br
+          b= I18n.l(day, format: :short_date)
+          br
+          - if @lessons_by_day.include? day
+            -@lessons_by_day[day].each do |lesson|
+              - if @user.admin?
+                br
+                =I18n.l(lesson.date, format: :short_time)
+                br
+                = link_to "#{lesson.group_id}#{t(:group)}", lesson_path(lesson.id), remote: true
+              - if @user.group_id == lesson.group_id
+                br
+                =I18n.l(lesson.date, format: :short_time)
+                br
+                = link_to "#{lesson.group_id}#{t(:group)}", lesson_path(lesson.id), remote: true
+      td = link_to t(:next_week), week_of_lessons_path(@week + 1), class: "glyphicon glyphicon-arrow-right"
 hr.hr-row
 .row
   .col-md-12.center
