@@ -1,33 +1,30 @@
-table.table.table-bordered.show_l
-  tr
-    td.main_color
-      = bootstrap_form_for(@lesson) do |f|
-        table.table.table-bordered
-          tr.center
-            td
-              = I18n.l(@lesson.date, format: :short_date)
-              br
-              = I18n.l(@lesson.date, format: :short_time)
-            td  = t(:mark_for_lesson)
-            td  = t(:mark_for_homework)
-          - if @user.admin?
-            - @users.each do |u|
-              tr.center
-                td = u.name
-                = hidden_field_tag 'users[][user_id]', u.id
-                td = number_field_tag 'users[][mark_for_lesson]', u.mark_for_lesson(@lesson), min: "0", max: "5"
-                td = number_field_tag 'users[][mark_for_homework]', u.mark_for_homework(@lesson), min: "0", max: "5"
-            tr
-              td colspan="3" = f.text_field(:hometask, label: t(:homework), placeholder: t(:write_hometask_or_comment))
-            tr
-              td colspan = "3" = f.submit t(:save), class: 'btn btn-primary'
-          - else
-            tr.center
-              td  = @user.name
-              td = @user.mark_for_lesson(@lesson)
-              td = @user.mark_for_homework(@lesson)
-            tr
-              td.center = t(:hometask_or_comments)
-              td colspan="2" = @lesson.hometask
+= bootstrap_form_for(@lesson) do |f|
+  table.table.table-bordered.show_l
+    tr.center
+      td
+        = I18n.l(@lesson.date, format: :short_date)
+        br
+        = I18n.l(@lesson.date, format: :short_time)
+      td = t(:mark_for_lesson)
+      td = t(:mark_for_homework)
+    - if @user.admin?
+      - @users.each do |u|
+        tr.center
+          td = u.name
+          = hidden_field_tag 'users[][user_id]', u.id
+          td = number_field_tag 'users[][mark_for_lesson]', u.mark_for_lesson(@lesson), in: 0..5
+          td = number_field_tag 'users[][mark_for_homework]', u.mark_for_homework(@lesson), in: 0..5
+      tr
+        td colspan="3" = f.text_field(:hometask, label: t(:homework), placeholder: t(:write_hometask_or_comment))
+      tr
+        td colspan = "3" = f.submit t(:save), class: 'btn btn-primary'
+    - else
+      tr.center
+        td  = @user.name
+        td = @user.mark_for_lesson(@lesson)
+        td = @user.mark_for_homework(@lesson)
+      tr
+        td.center = t(:hometask_or_comments)
+        td colspan="2" = @lesson.hometask
     tr
       td colspan = "3" = link_to t(:cancel), :back, class: 'btn btn-default'
