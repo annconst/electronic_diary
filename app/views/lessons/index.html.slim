@@ -31,5 +31,8 @@ hr.hr-row
 .row.center
   .text-center = link_to t(:add_lesson), new_lesson_path, class: 'btn btn-primary' if @user.admin?
 hr.hr-row
-  .row.show_padding
-    .show_lesson
+.show_lesson
+/.row
+/  .col-md-12.center
+/    - if user_signed_in?
+/      = link_to t(:exit), destroy_user_session_path, method: :delete, class: 'btn btn-danger'
