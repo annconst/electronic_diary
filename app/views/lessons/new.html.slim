@@ -1,11 +1,13 @@
 table.table.table-bordered.show_l
-  = bootstrap_form_for @lesson do |f|
+  = bootstrap_form_for @lesson, :html => { :multipart => true } do |f|
     tr
       td = f.datetime_field(:date, label: t(:lesson_date), placeholder:  'dd.mm.yy HH:mm')
     tr
       td = f.select(:group_id, Lesson::LESSON_GROUP, { class: "selectpicker" })
     tr
       td = f.text_area(:hometask, label: t(:hometask_or_comments), placeholder: t(:write_hometask_or_comment))
+    tr
+      td = file_field_tag 'documents[]', type: :file, multiple: true
     tr
       td = f.submit t(:create), class: 'btn btn-primary'
   tr

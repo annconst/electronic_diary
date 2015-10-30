@@ -54,3 +54,5 @@ en:
     formats:
       short_date: "Date: %d.%m.%Y"
       short_date_name: "%A"
+  download: 'Download'
+  delete: 'Delete'

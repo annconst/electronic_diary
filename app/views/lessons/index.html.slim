@@ -23,8 +23,6 @@
                 li.list-group-item
                   = I18n.l(lesson.date, format: :short_time)
                   = link_to "#{Lesson::LESSON_GROUP.key(lesson.group_id)}", lesson_path(lesson.id), remote: true
-        /.panel-body
-        /  .text-center = link_to t(:add_lesson), new_lesson_path, class: 'btn btn btn-default'
   .col-md-1.center
     = link_to '', week_of_lessons_path(@week + 1), class: "glyphicon glyphicon-arrow-right btn btn-default"
 hr.hr-row
@@ -32,7 +30,3 @@ hr.hr-row
   .text-center = link_to t(:add_lesson), new_lesson_path, class: 'btn btn-primary' if @user.admin?
 hr.hr-row
 .show_lesson
-/.row
-/  .col-md-12.center
-/    - if user_signed_in?
-/      = link_to t(:exit), destroy_user_session_path, method: :delete, class: 'btn btn-danger'
