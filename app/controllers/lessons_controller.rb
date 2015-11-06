@@ -56,7 +56,7 @@ class LessonsController < ApplicationController
     docs = params[:documents]
     if docs.present?
       if docs.is_a? Array
-        docs.each { |doc| lesson.documents.create file: doc}
+        docs.each { |doc| lesson.documents.create file: doc }
       else
         lesson.documents.create file: docs
       end
@@ -64,11 +64,15 @@ class LessonsController < ApplicationController
   end
 
   def destroy_all_documents
-    @lesson = Lesson.find(params[:id])
-    @lesson.documents.each do |del_doc|
-      del_doc.destroy
+    @lesson = Lesson.where(id: params[:id]).first
+    if @lesson.documents.present
+      @lesson.documents.each do |del_doc|
+        del_doc.destroy
+      end
+      @lesson.save
+    else
+      flash[:error] = t(:error_delete)
     end
-    @lesson.save
     redirect_to :back
 
   end

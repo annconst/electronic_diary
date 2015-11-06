@@ -22,7 +22,7 @@
             - @lesson.documents.each do |doc|
               li
                 = link_to doc.file_file_name, doc.file.url
-                = ' / '
+                |  /
                 = link_to t(:delete), document_path(doc), method: :delete, data: { confirm: "Are you sure?" }, class: "link_delete"
       tr
         td colspan="3" = file_field_tag 'documents[]', type: :file, multiple: true

@@ -55,4 +55,5 @@ en:
       short_date: "Date: %d.%m.%Y"
       short_date_name: "%A"
   download: 'Download'
-  delete: 'Delete'
+  delete: ' Delete'
+  error_delete: 'Error! Object is not deleted!'
