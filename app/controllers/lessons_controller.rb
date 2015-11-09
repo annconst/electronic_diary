@@ -18,11 +18,16 @@ class LessonsController < ApplicationController
 
   def new
     @lesson = Lesson.new
+    @lesson.documents.build
   end
 
   def create
     @lesson = Lesson.new(lesson_params)
-    flash[:error] = t(:error_create) unless @lesson.save
+    if @lesson.save
+      create_document(@lesson)
+    else
+      flash[:error] = t(:error_create)
+    end
     redirect_to lessons_path
   end
 
@@ -38,14 +43,44 @@ class LessonsController < ApplicationController
           @lesson.lesson_marks.create(lesson_mark_params)
         end
       end
-      end
+    end
+    if @lesson.update_attributes(lesson_params)
+      create_document(@lesson)
+    else
+      flash[:error] = t(:error_update)
+    end
     return redirect_to :back
+  end
+
+  def create_document(lesson)
+    docs = params[:documents]
+    if docs.present?
+      if docs.is_a? Array
+        docs.each { |doc| lesson.documents.create file: doc }
+      else
+        lesson.documents.create file: docs
+      end
+    end
+  end
+
+  def destroy_all_documents
+    @lesson = Lesson.where(id: params[:id]).first
+    if @lesson.documents.present
+      @lesson.documents.each do |del_doc|
+        del_doc.destroy
+      end
+      @lesson.save
+    else
+      flash[:error] = t(:error_delete)
+    end
+    redirect_to :back
+
   end
 
   private
 
   def lesson_params
-    params.require(:lesson).permit(:hometask, :date, :group_id)
+    params.require(:lesson).permit(:hometask, :date, :group_id, documents_attributes: [:id, :name, :file] )
   end
 
   def lessons_marks_params

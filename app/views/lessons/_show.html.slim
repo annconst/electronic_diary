@@ -1,12 +1,12 @@
-= bootstrap_form_for(@lesson) do |f|
+= bootstrap_form_for @lesson, :html => { :multipart => true } do |f|
   table.table.table-bordered.show_l
-    tr.center
-      td
+    tr
+      th.text-center
         = I18n.l(@lesson.date, format: :short_date)
         br
         = I18n.l(@lesson.date, format: :short_time)
-      td = t(:mark_for_lesson)
-      td = t(:mark_for_homework)
+      th.text-center = t(:mark_for_lesson)
+      th.text-center = t(:mark_for_homework)
     - if @user.admin?
       - @users.each do |u|
         tr.center
@@ -15,7 +15,17 @@
           td = number_field_tag 'users[][mark_for_lesson]', u.mark_for_lesson(@lesson), in: 0..5
           td = number_field_tag 'users[][mark_for_homework]', u.mark_for_homework(@lesson), in: 0..5
       tr
-        td colspan="3" = f.text_field(:hometask, label: t(:homework), placeholder: t(:write_hometask_or_comment))
+        td colspan="3" = f.text_area(:hometask, label: t(:homework), placeholder: t(:write_hometask_or_comment), rows: 7)
+      tr
+        td colspan="3"
+          ul
+            - @lesson.documents.each do |doc|
+              li
+                = link_to doc.file_file_name, doc.file.url
+                |  /
+                = link_to t(:delete), document_path(doc), method: :delete, data: { confirm: "Are you sure?" }, class: "link_delete"
+      tr
+        td colspan="3" = file_field_tag 'documents[]', type: :file, multiple: true
       tr
         td colspan = "3" = f.submit t(:save), class: 'btn btn-primary'
     - else
@@ -26,5 +36,11 @@
       tr
         td.center = t(:hometask_or_comments)
         td colspan="2" = @lesson.hometask
+      tr
+        td colspan="3"
+          ul
+            - @lesson.documents.each do |doc|
+              li
+                = link_to doc.file_file_name, doc.file.url
     tr
       td colspan = "3" = link_to t(:cancel), :back, class: 'btn btn-default'

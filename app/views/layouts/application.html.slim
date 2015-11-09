@@ -25,11 +25,11 @@ html
           ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               li
-                p.navbar-text.center
+                p.navbar-text
                   = current_user.name
-                  | (
+                  |    (
                   = link_to t(:logout), destroy_user_session_path, method: :delete
-                  | )
+                  |)
 
     .container-fluid
       .row

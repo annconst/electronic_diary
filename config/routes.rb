@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :lessons
+  resources :documents
 
   root 'lessons#index'
 
