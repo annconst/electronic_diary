@@ -8,6 +8,6 @@ jQuery ->
     dateFormat: "yy.mm.dd",
     timeFormat:  "HH:mm"
 
-  jQuery('#lesson_date').change ->
-    if jQuery(this).val()
-      jQuery('.xdsoft_datetimepicker').hide()
+#  jQuery('#lesson_date').change ->
+#    if jQuery(this).val()
+#      jQuery('.ui-datepicker').hide()
