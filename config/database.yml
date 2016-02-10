@@ -9,17 +9,17 @@
 #  pool: 5
 #  database: user_lesson
 #  username: root
-#  password: sP4k8eRz0612max
+#  password:
 #  encoding: utf8
 #  host: localhost
 #
-#development:
-#  adapter: mysql
-#  database: db_dev
-#  username: root
-#  password: sP4k8eRz0612max
-#  encoding: utf8
-#  host: 127.0.0.1
+development:
+  adapter: mysql
+  database: db_dev
+  username: root
+  password:
+  encoding: utf8
+  host: 127.0.0.1
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -28,10 +28,7 @@
 #  <<: *default
 #  database: test
 
-production:
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
-
-
-
+#production:
+#  adapter: postgresql
+#  encoding: unicode
+#  pool: 5
